@@ -39,10 +39,10 @@
         <h2 class="text-3xl font-bold">Garanta sua vaga agora!</h2>
         <p class="mt-4 text-lg">Não deixe sua empresa perder dinheiro. Invista na segurança do seu negócio hoje mesmo.</p>
         
-        <div class="mt-6 flex justify-center items-center space-x-4">
-            <input id="email" type="email" placeholder="Digite seu e-mail" class="px-4 py-2 rounded-lg text-black" required>
-            <button onclick="subscribe()" class="bg-blue-500 text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-blue-700">Inscrever</button>
-        </div>
+        <form id="subscribeForm" class="mt-6 flex justify-center items-center space-x-4">
+            <input id="email" name="email" type="email" placeholder="Digite seu e-mail" class="px-4 py-2 rounded-lg text-black" required>
+            <button type="submit" class="bg-blue-500 text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-blue-700">Inscrever</button>
+        </form>
     </section>
     
     <footer class="bg-gray-800 py-6 text-center">
@@ -50,27 +50,30 @@
     </footer>
 
     <script>
-        function subscribe() {
-            const email = document.getElementById('email').value;
+        document.getElementById("subscribeForm").addEventListener("submit", async function(event) {
+            event.preventDefault(); // Impede recarregamento da página
+
+            const email = document.getElementById("email").value;
             if (!email) {
-                alert('Por favor, insira um e-mail válido.');
+                alert("Por favor, insira um e-mail válido.");
                 return;
             }
-            
-            fetch('/.netlify/functions/subscribe', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email })
-            })
-            .then(response => response.json())
-            .then(data => alert(data.message))
-            .catch(error => console.error('Erro ao inscrever:', error));
-        }
+
+            try {
+                const response = await fetch("/.netlify/functions/subscribe", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email })
+                });
+
+                const result = await response.json();
+                alert(result.message || "Erro ao cadastrar");
+
+            } catch (error) {
+                alert("Erro na solicitação. Verifique o console.");
+                console.error(error);
+            }
+        });
     </script>
 </body>
 </html>
-
-</html>
-=======
-</html>
->>>>>>> 55dafdd (Atualizando arquivos do projeto)
