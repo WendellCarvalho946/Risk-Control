@@ -12,7 +12,14 @@ exports.handler = async (event) => {
         }
 
         const API_KEY = process.env.BREVO_API_KEY;
-        const LIST_ID = process.env.BREVO_LIST_ID;
+        const LIST_ID = parseInt(process.env.BREVO_LIST_ID, 10); // Converte para número
+
+        if (!API_KEY || !LIST_ID) {
+            return {
+                statusCode: 500,
+                body: JSON.stringify({ message: "Erro no servidor: API_KEY ou LIST_ID não configurados." })
+            };
+        }
 
         const response = await fetch("https://api.brevo.com/v3/contacts", {
             method: "POST",
@@ -22,13 +29,14 @@ exports.handler = async (event) => {
             },
             body: JSON.stringify({
                 email,
-                listIds: [parseInt(LIST_ID)]
+                listIds: [LIST_ID]
             })
         });
 
+        const result = await response.json(); // Captura a resposta do Brevo
+
         if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.message || "Erro ao cadastrar e-mail");
+            throw new Error(result.message || "Erro ao cadastrar e-mail no Brevo.");
         }
 
         return {
@@ -39,7 +47,7 @@ exports.handler = async (event) => {
     } catch (error) {
         return {
             statusCode: 500,
-            body: JSON.stringify({ message: error.message })
+            body: JSON.stringify({ message: `Erro: ${error.message}` })
         };
     }
 };
