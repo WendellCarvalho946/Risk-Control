@@ -1,7 +1,2 @@
-<<<<<<< HEAD
-[build]
-functions = "netlify/functions"
-=======
 [functions]
 directory = "netlify/functions"
->>>>>>> 55dafdd (Atualizando arquivos do projeto)
