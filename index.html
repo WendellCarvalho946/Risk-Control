@@ -38,14 +38,38 @@
     <section class="container mx-auto px-6 py-12 text-center">
         <h2 class="text-3xl font-bold">Garanta sua vaga agora!</h2>
         <p class="mt-4 text-lg">Não deixe sua empresa perder dinheiro. Invista na segurança do seu negócio hoje mesmo.</p>
-        <a href="#" class="mt-6 inline-block bg-blue-500 text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-blue-700">Inscreva-se Agora</a>
+        
+        <div class="mt-6 flex justify-center items-center space-x-4">
+            <input id="email" type="email" placeholder="Digite seu e-mail" class="px-4 py-2 rounded-lg text-black" required>
+            <button onclick="subscribe()" class="bg-blue-500 text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-blue-700">Inscrever</button>
+        </div>
     </section>
     
     <footer class="bg-gray-800 py-6 text-center">
         <p class="text-gray-400">&copy; 2025 Risk Control. Todos os direitos reservados.</p>
     </footer>
+
+    <script>
+        function subscribe() {
+            const email = document.getElementById('email').value;
+            if (!email) {
+                alert('Por favor, insira um e-mail válido.');
+                return;
+            }
+            
+            fetch('/.netlify/functions/subscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email })
+            })
+            .then(response => response.json())
+            .then(data => alert(data.message))
+            .catch(error => console.error('Erro ao inscrever:', error));
+        }
+    </script>
 </body>
-<<<<<<< HEAD
+</html>
+
 </html>
 =======
 </html>
