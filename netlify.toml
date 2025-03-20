@@ -1,2 +1,12 @@
-[functions]
-directory = "netlify/functions"
+[build]
+  functions = "netlify/functions"
+  publish = "public"  # Altere para a pasta onde seus arquivos estáticos estão
+
+[dev]
+  command = "npm run dev"  # Se você estiver usando um framework como Vite ou Next.js
+  framework = "#custom"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
