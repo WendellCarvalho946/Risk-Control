@@ -3,75 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Risk Control - Prevenção de Perdas</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Risk Control - Treinamento de Prevenção de Perdas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #0a0f2b;
+            color: #ffffff;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            background: #1a1f4d;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            color: #4a90e2;
+            font-size: 32px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        .plans {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .plan {
+            background: #2c357d;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+        }
+        .plan h2 {
+            color: #4a90e2;
+        }
+        .plan ul {
+            list-style: none;
+            padding: 0;
+        }
+        .plan ul li {
+            margin: 10px 0;
+        }
+        .form-container {
+            margin-top: 20px;
+        }
+        input, button {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #4a90e2;
+            color: white;
+            cursor: pointer;
+            border: none;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #367bd6;
+        }
+        .chart-container {
+            margin-top: 50px;
+            background: #2c357d;
+            padding: 20px;
+            border-radius: 10px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body class="bg-gray-900 text-white">
-    <header class="bg-blue-600 py-6 text-center">
-        <h1 class="text-4xl font-bold">Risk Control - Proteja Seu Negócio</h1>
-        <p class="text-lg mt-2">Aumente as chances de sucesso da sua empresa reduzindo perdas</p>
-    </header>
-    
-    <section class="container mx-auto px-6 py-12 text-center">
-        <h2 class="text-3xl font-bold">Por que investir na Prevenção de Perdas?</h2>
-        <p class="mt-4 text-lg">Empresas que ignoram a gestão de perdas enfrentam prejuízos que podem comprometer sua sobrevivência. Nosso curso oferece estratégias eficazes para reduzir riscos e maximizar lucros.</p>
-    </section>
-    
-    <section class="bg-gray-800 py-12 text-center">
-        <h2 class="text-3xl font-bold">O que você aprenderá no curso?</h2>
-        <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6 px-6">
-            <div class="bg-gray-700 p-6 rounded-lg">
-                <h3 class="text-xl font-semibold">Identificação de Riscos</h3>
-                <p class="mt-2">Saiba como detectar áreas vulneráveis e prevenir perdas antes que elas ocorram.</p>
+<body>
+    <div class="container">
+        <h1>Risk Control - Proteja sua empresa e aumente seus lucros!</h1>
+        <p>Estudos mostram que mais de 50% das pequenas e médias empresas fecham nos primeiros anos devido à má gestão e perdas financeiras. A prevenção de perdas é a chave para manter seu negócio seguro e lucrativo.</p>
+        
+        <div class="plans">
+            <div class="plan">
+                <h2>Plano Essencial - R$200</h2>
+                <p>Treinamento introdutório ideal para quem quer aprender o básico sobre prevenção de perdas de forma prática e eficiente.</p>
+                <ul>
+                    <li>📚 Ebook completo sobre prevenção de perdas</li>
+                    <li>🎥 Aulas gravadas sobre as melhores práticas do setor</li>
+                </ul>
+                <div class="form-container">
+                    <input type="email" placeholder="Seu e-mail" required>
+                    <button>Quero esse plano</button>
+                </div>
             </div>
-            <div class="bg-gray-700 p-6 rounded-lg">
-                <h3 class="text-xl font-semibold">Estratégias de Controle</h3>
-                <p class="mt-2">Aprenda métodos práticos para minimizar perdas e aumentar a eficiência operacional.</p>
+            
+            <div class="plan">
+                <h2>Plano Avançado - R$400</h2>
+                <p>Treinamento aprofundado para empresários que desejam implementar estratégias práticas com suporte especializado.</p>
+                <ul>
+                    <li>📚 Ebook completo sobre prevenção de perdas</li>
+                    <li>🎥 Aulas gravadas e materiais extras detalhados</li>
+                    <li>🗏️ Checklist estratégico de controle de perdas</li>
+                    <li>📞 Suporte e orientação especializada para aplicação no seu negócio</li>
+                </ul>
+                <div class="form-container">
+                    <input type="email" placeholder="Seu e-mail" required>
+                    <button>Quero esse plano</button>
+                </div>
             </div>
-            <div class="bg-gray-700 p-6 rounded-lg">
-                <h3 class="text-xl font-semibold">Aumento de Rentabilidade</h3>
-                <p class="mt-2">Descubra como a prevenção de perdas impacta diretamente no crescimento do seu negócio.</p>
+            
+            <div class="plan">
+                <h2>Treinamento Presencial - Entre em contato</h2>
+                <p>Treinamento completo e personalizado para empresas que precisam de um suporte prático presencial para suas equipes.</p>
+                <ul>
+                    <li>🏢 Treinamentos in-company com metodologia especializada</li>
+                    <li>📊 Análise detalhada dos riscos e vulnerabilidades da empresa</li>
+                    <li>🛡️ Consultoria para implementação de estratégias eficazes de prevenção</li>
+                </ul>
+                <div class="form-container">
+                    <input type="email" placeholder="Seu e-mail" required>
+                    <button>Quero saber mais</button>
+                </div>
             </div>
         </div>
-    </section>
-    
-    <section class="container mx-auto px-6 py-12 text-center">
-        <h2 class="text-3xl font-bold">Garanta sua vaga agora!</h2>
-        <p class="mt-4 text-lg">Não deixe sua empresa perder dinheiro. Invista na segurança do seu negócio hoje mesmo.</p>
         
-        <form id="subscribeForm" class="mt-6 flex justify-center items-center space-x-4">
-            <input id="email" name="email" type="email" placeholder="Digite seu e-mail" class="px-4 py-2 rounded-lg text-black" required>
-            <button type="submit" class="bg-blue-500 text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-blue-700">Inscrever</button>
-        </form>
-    </section>
-    
-    <footer class="bg-gray-800 py-6 text-center">
-        <p class="text-gray-400">&copy; 2025 Risk Control. Todos os direitos reservados.</p>
-    </footer>
+        <h2>Por que investir em prevenção de perdas?</h2>
+        <p>Empresas que ignoram a prevenção enfrentam altos custos operacionais, perda de credibilidade e até falência. Implementar estratégias eficazes reduz riscos e melhora a eficiência.</p>
+        <p>De acordo com estudos do setor, 70% das empresas que investem em prevenção de perdas reduzem suas despesas operacionais em até 30%.</p>
+        
+        <h2>Exemplo de Impacto Financeiro</h2>
+        <p>Uma empresa com faturamento de R$ 500.000 ao ano e perdas de 10% (R$ 50.000) pode reduzir esse valor para apenas 3% (R$ 15.000) com um bom programa de prevenção. Isso significa uma economia de R$ 35.000 ao ano, um aumento direto no lucro!</p>
+        
+        <div class="chart-container">
+            <h2>Impacto da Prevenção de Perdas</h2>
+            <canvas id="lossPreventionChart"></canvas>
+        </div>
+    </div>
 
     <script>
-        document.getElementById("subscribeForm").addEventListener("submit", async function(event) {
-            event.preventDefault(); // Impede recarregamento da página
-
-            const email = document.getElementById("email").value;
-            if (!email) {
-                alert("Por favor, insira um e-mail válido.");
-                return;
-            }
-
-            try {
-                const response = await fetch("/.netlify/functions/subscribe", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ email })
-                });
-
-                const result = await response.json();
-                alert(result.message || "Erro ao cadastrar");
-
-            } catch (error) {
-                alert("Erro na solicitação. Verifique o console.");
-                console.error(error);
+        const ctx = document.getElementById('lossPreventionChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Antes da prevenção', 'Após a prevenção'],
+                datasets: [{
+                    label: 'Perdas (R$)',
+                    data: [50000, 15000],
+                    backgroundColor: ['#ff4d4d', '#4a90e2']
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
             }
         });
     </script>
