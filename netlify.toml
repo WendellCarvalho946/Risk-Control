@@ -1,6 +1,6 @@
 [build]
   functions = "netlify/functions"
-  publish = "public"  # Altere para a pasta onde seus arquivos estáticos estão
+  publish = "."  # Altere para a pasta onde seus arquivos estáticos estão
 
 [dev]
   command = "npm run dev"  # Se você estiver usando um framework como Vite ou Next.js
