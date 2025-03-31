@@ -91,80 +91,52 @@
             <div class="plan">
                 <h2>Plano Essencial - R$200</h2>
                 <p>Treinamento introdutório ideal para quem quer aprender o básico sobre prevenção de perdas de forma prática e eficiente.</p>
-                <ul>
-                    <li>📚 Ebook completo sobre prevenção de perdas</li>
-                    <li>🎥 Aulas gravadas sobre as melhores práticas do setor</li>
-                </ul>
-                <div class="form-container">
-                    <input type="email" placeholder="Seu e-mail" required>
-                    <button>Quero esse plano</button>
-                </div>
+                <input type="email" id="email-essencial" placeholder="Seu e-mail" required>
+                <button onclick="subscribe('email-essencial', 5)">Quero esse plano</button>
             </div>
             
             <div class="plan">
                 <h2>Plano Avançado - R$400</h2>
                 <p>Treinamento aprofundado para empresários que desejam implementar estratégias práticas com suporte especializado.</p>
-                <ul>
-                    <li>📚 Ebook completo sobre prevenção de perdas</li>
-                    <li>🎥 Aulas gravadas e materiais extras detalhados</li>
-                    <li>🗏️ Checklist estratégico de controle de perdas</li>
-                    <li>📞 Suporte e orientação especializada para aplicação no seu negócio</li>
-                </ul>
-                <div class="form-container">
-                    <input type="email" placeholder="Seu e-mail" required>
-                    <button>Quero esse plano</button>
-                </div>
+                <input type="email" id="email-avancado" placeholder="Seu e-mail" required>
+                <button onclick="subscribe('email-avancado', 6)">Quero esse plano</button>
             </div>
             
             <div class="plan">
                 <h2>Treinamento Presencial - Entre em contato</h2>
                 <p>Treinamento completo e personalizado para empresas que precisam de um suporte prático presencial para suas equipes.</p>
-                <ul>
-                    <li>🏢 Treinamentos in-company com metodologia especializada</li>
-                    <li>📊 Análise detalhada dos riscos e vulnerabilidades da empresa</li>
-                    <li>🛡️ Consultoria para implementação de estratégias eficazes de prevenção</li>
-                </ul>
-                <div class="form-container">
-                    <input type="email" placeholder="Seu e-mail" required>
-                    <button>Quero saber mais</button>
-                </div>
+                <input type="email" id="email-presencial" placeholder="Seu e-mail" required>
+                <button onclick="subscribe('email-presencial', 7)">Quero saber mais</button>
             </div>
-        </div>
-        
-        <h2>Por que investir em prevenção de perdas?</h2>
-        <p>Empresas que ignoram a prevenção enfrentam altos custos operacionais, perda de credibilidade e até falência. Implementar estratégias eficazes reduz riscos e melhora a eficiência.</p>
-        <p>De acordo com estudos do setor, 70% das empresas que investem em prevenção de perdas reduzem suas despesas operacionais em até 30%.</p>
-        
-        <h2>Exemplo de Impacto Financeiro</h2>
-        <p>Uma empresa com faturamento de R$ 500.000 ao ano e perdas de 10% (R$ 50.000) pode reduzir esse valor para apenas 3% (R$ 15.000) com um bom programa de prevenção. Isso significa uma economia de R$ 35.000 ao ano, um aumento direto no lucro!</p>
-        
-        <div class="chart-container">
-            <h2>Impacto da Prevenção de Perdas</h2>
-            <canvas id="lossPreventionChart"></canvas>
         </div>
     </div>
 
     <script>
-        const ctx = document.getElementById('lossPreventionChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Antes da prevenção', 'Após a prevenção'],
-                datasets: [{
-                    label: 'Perdas (R$)',
-                    data: [50000, 15000],
-                    backgroundColor: ['#ff4d4d', '#4a90e2']
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
+        function subscribe(emailFieldId, listId) {
+            const email = document.getElementById(emailFieldId).value;
+            if (!email) {
+                alert("Por favor, insira um e-mail válido.");
+                return;
             }
-        });
+            
+            fetch("/.netlify/functions/subscribe", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, listId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert("Erro: " + data.error);
+                } else {
+                    alert("Inscrição realizada com sucesso!");
+                }
+            })
+            .catch(error => {
+                alert("Erro ao enviar requisição.");
+                console.error(error);
+            });
+        }
     </script>
 </body>
 </html>
