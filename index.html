@@ -73,62 +73,70 @@
         button:hover {
             background-color: #367bd6;
         }
+        .chart-container {
+            margin-top: 50px;
+            background: #2c357d;
+            padding: 20px;
+            border-radius: 10px;
+        }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="container">
         <h1>Risk Control - Proteja sua empresa e aumente seus lucros!</h1>
+        <p>Estudos mostram que mais de 50% das pequenas e médias empresas fecham nos primeiros anos devido à má gestão e perdas financeiras. A prevenção de perdas é a chave para manter seu negócio seguro e lucrativo.</p>
+        
         <div class="plans">
-            <div class="plan" data-list-id="5">
+            <div class="plan">
                 <h2>Plano Essencial - R$200</h2>
+                <p>Treinamento introdutório ideal para quem quer aprender o básico sobre prevenção de perdas de forma prática e eficiente.</p>
+                <ul>
+                    <li>📚 Ebook completo sobre prevenção de perdas</li>
+                    <li>🎥 Aulas gravadas sobre as melhores práticas do setor</li>
+                </ul>
                 <div class="form-container">
                     <input type="email" placeholder="Seu e-mail" required>
-                    <button onclick="subscribe(this)">Quero esse plano</button>
+                     <button onclick="subscribe(this)">Quero esse plano</button>
                 </div>
             </div>
-            <div class="plan" data-list-id="6">
+            
+            <div class="plan">
                 <h2>Plano Avançado - R$400</h2>
+                <p>Treinamento aprofundado para empresários que desejam implementar estratégias práticas com suporte especializado.</p>
+                <ul>
+                    <li>📚 Ebook completo sobre prevenção de perdas</li>
+                    <li>🎥 Aulas gravadas e materiais extras detalhados</li>
+                    <li>🗏️ Checklist estratégico de controle de perdas</li>
+                    <li>📞 Suporte e orientação especializada para aplicação no seu negócio</li>
+                </ul>
                 <div class="form-container">
                     <input type="email" placeholder="Seu e-mail" required>
-                    <button onclick="subscribe(this)">Quero esse plano</button>
+                     <button onclick="subscribe(this)">Quero esse plano</button>
                 </div>
             </div>
-            <div class="plan" data-list-id="7">
+            
+            <div class="plan">
                 <h2>Treinamento Presencial - Entre em contato</h2>
+                <p>Treinamento completo e personalizado para empresas que precisam de um suporte prático presencial para suas equipes.</p>
+                <ul>
+                    <li>🏢 Treinamentos in-company com metodologia especializada</li>
+                    <li>📊 Análise detalhada dos riscos e vulnerabilidades da empresa</li>
+                    <li>🛡️ Consultoria para implementação de estratégias eficazes de prevenção</li>
+                </ul>
                 <div class="form-container">
                     <input type="email" placeholder="Seu e-mail" required>
-                    <button onclick="subscribe(this)">Quero saber mais</button>
+                     <button onclick="subscribe(this)">Quero esse plano</button>
                 </div>
             </div>
         </div>
-    </div>
-
-    <script>
-        async function subscribe(button) {
-            const plan = button.closest('.plan');
-            const emailInput = plan.querySelector('input[type="email"]');
-            const email = emailInput.value;
-            const listId = plan.getAttribute('data-list-id');
-
-            if (!email) {
-                alert('Por favor, insira um e-mail válido.');
-                return;
-            }
-
-            const response = await fetch('/.netlify/functions/subscribe', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, listId })
-            });
-
-            const result = await response.json();
-            alert(result.message || result.error);
-        }
-    </script>
-</body>
+        
         <h2>Por que investir em prevenção de perdas?</h2>
         <p>Empresas que ignoram a prevenção enfrentam altos custos operacionais, perda de credibilidade e até falência. Implementar estratégias eficazes reduz riscos e melhora a eficiência.</p>
         <p>De acordo com estudos do setor, 70% das empresas que investem em prevenção de perdas reduzem suas despesas operacionais em até 30%.</p>
+        
+        <h2>Exemplo de Impacto Financeiro</h2>
+        <p>Uma empresa com faturamento de R$ 500.000 ao ano e perdas de 10% (R$ 50.000) pode reduzir esse valor para apenas 3% (R$ 15.000) com um bom programa de prevenção. Isso significa uma economia de R$ 35.000 ao ano, um aumento direto no lucro!</p>
         
         <div class="chart-container">
             <h2>Impacto da Prevenção de Perdas</h2>
@@ -159,4 +167,28 @@
         });
     </script>
 </body>
+<script>
+        async function subscribe(button) {
+            const plan = button.closest('.plan');
+            const emailInput = plan.querySelector('input[type="email"]');
+            const email = emailInput.value;
+            const listId = plan.getAttribute('data-list-id');
+
+            if (!email) {
+                alert('Por favor, insira um e-mail válido.');
+                return;
+            }
+
+            const response = await fetch('/.netlify/functions/subscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, listId })
+            });
+
+            const result = await response.json();
+            alert(result.message || result.error);
+        }
+    </script>
+</body>
+    
 </html>
